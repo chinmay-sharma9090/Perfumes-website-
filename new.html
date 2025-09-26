@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfume Shop</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: #faf9f6;
+      color: #2c2c54;
+    }
+
+    /* ===== Header ===== */
+    header {
+      background: #fff;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid #e6e6fa;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    } 
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #6a5acd;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #2c2c54;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #ffd700;
+    }
+
+    /* ===== Slider Styling ===== */
+.slider {
+  position: relative;
+  overflow: hidden;
+  height: 500px;
+  max-width: 100%;
+  margin: 20px auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.slides {
+  display: flex;
+  width: 400%;
+  height: 100%;
+  animation: slide 16s infinite;
+}
+
+.slide {
+  width: 100%;
+  position: relative;
+}
+
+.slide img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  filter: brightness(55%);
+}
+
+.caption {
+  position: absolute;
+  bottom: 20%;
+  left: 10%;
+  color: #fff;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+  animation: fadeIn 2s ease-in-out;
+}
+
+.caption h2 {
+  font-size: 40px;
+  margin-bottom: 10px;
+  color: #ffd700;
+}
+
+.caption p {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* Keyframes for sliding */
+@keyframes slide {
+  0%, 20%   { margin-left: 0; }
+  25%, 45%  { margin-left: -100%; }
+  50%, 70%  { margin-left: -200%; }
+  75%, 95%  { margin-left: -300%; }
+  100%      { margin-left: 0; }
+}
+
+/* Fade-in animation for text */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+    /* ===== Slider ===== */
+    /* .slider {
+      position: relative;
+      overflow: hidden;
+      height: 500px;
+      max-width: 100%;
+      margin: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .slides {
+      display: flex;
+      width: 400%;
+      height: 200%;
+      animation: slide 12s infinite;
+    }
+    .slides img{
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+    }
+    @keyframes slide {
+        0% {margin-left: 0;}
+        20% {margin-left: 0;}
+        35% {margin-left: -100%;}
+        45% {margin-left: -200%;}
+        50% {margin-left: -200%;}
+        75% {margin-left: -300%;}
+        95% {margin-left: -300%;}
+        100% {margin-left: 0;}
+    } */
+
+    /* ===== Section headings ===== */
+    section {
+      width: 90%;
+      margin: 40px auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #6a5acd;
+      border-bottom: 2px solid #e6e6fa;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    /* ===== Trending Products ===== */
+    .trending {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      border: 1px solid #e6e6fa;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    }
+
+    .card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .card h3 {
+      margin: 10px 0;
+      font-size: 18px;
+      color: #2c2c54;
+    }
+
+    .card button {
+      background: linear-gradient(45deg, #6a5acd, #483d8b);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: 0.3s;
+    }
+
+    .card button:hover {
+      background: #ffd700;
+      color: #2c2c54;
+      font-weight: bold;
+    }
+
+    /* Trending Slider */
+    .ttrending {
+      padding: 2rem;
+      background: #e6e6fa;
+      border-radius: 12px;
+    }
+    .ttrending h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #483d8b;
+    }
+    .tslider {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      scroll-behavior: smooth;
+      padding: 1rem 0;
+    }
+    .tslide {
+      min-width: 200px;
+      background: #ffffff;
+      border-radius: 10px;
+      border: 1px solid #e6e6fa;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      text-align: center;
+      padding: 1rem;
+      transition: transform 0.3s;
+    }
+    .tslide:hover {
+      transform: translateY(-4px);
+    }
+    .tslide p{
+      color: #6a5acd;
+      font-weight: bold;
+    }
+    .tslide img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    /* ===== For Him / For Her ===== */
+    .for-him-her {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .promo {
+      background: #e6e6fa;
+      padding: 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .promo img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .promo h3 {
+      color: #483d8b;
+    }
+
+    /* ===== Product Grid ===== */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    /* ===== About Us ===== */
+    .about {
+      background: #fffaf0;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+    }
+    .about-section{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        padding: 40px;
+    }
+
+    .about img {
+      width: 400px;
+      /* height: 600px;
+      object-fit: cover; */
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .about-text{
+        max-width: 600px;
+    }
+
+    .about-text h3 {
+      color: #6a5acd;
+    }
+
+    /* ===== Contact Us ===== */
+    .contact-section {
+      width: 100%;
+      max-width: 1250px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-left: 5px solid #6a5acd;
+    }
+    .contact-section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #2c2c54;
+    }
+    .contact-info {
+      margin-bottom: 20px;
+    }
+    .contact-info p {
+      margin: 6px 0;
+      color: #555;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 4px;
+      display: block;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    button {
+      width: 150px;
+      padding: 10px;
+      background: linear-gradient(45deg, #6a5acd, #483d8b);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #ffd700;
+      color: #2c2c54;
+      font-weight: bold;
+    }
+    .center {
+      text-align: center;
+    }
+
+    /* footer */
+    footer {
+      background: linear-gradient(45deg, #483d8b, #6a5acd);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+  <!-- ===== Header ===== -->
+  <header>
+    <div class="logo">SKINN</div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#trending">Products</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Slider ===== -->
+  <!-- <div class="slider">
+    <div class="slides">
+        <img src="sld1.jpeg" alt="perfume1">
+        <img src="sld2.jpeg" alt="perfume1">
+        <img src="sld3.jpeg" alt="perfume1">
+        <img src="slide1.jpeg" alt="perfume1">
+         -->
+      <!-- ===== Slider ===== -->
+<div class="slider">
+  <div class="slides">
+    <div class="slide">
+      <img src="h1.PNG" alt="Perfume 1">
+      <div class="caption">
+        <h2>Discover Your Fragrance</h2>
+        <p>Luxury perfumes that define your personality</p>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="h2.PNG" alt="Perfume 2">
+      <div class="caption">
+        <h2>Special For Him & Her</h2>
+        <p>Elegance & freshness in every drop</p>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="h3.PNG" alt="Perfume 3">
+      <div class="caption">
+        <h2>New Trending Perfumes</h2>
+        <p>Feel confident with every spray</p>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="sld3.jpeg" alt="Perfume 4">
+      <div class="caption">
+        <h2>Exclusive Offers</h2>
+        <p>Flat 40% off this season</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <!-- <input type="radio" name="r" id="r1" checked>
+    <input type="radio" name="r" id="r2">
+    <input type="radio" name="r" id="r3">
+
+    <div class="slides s1">
+      <div class="slide slide1"><p>Discover Your Fragrance</p></div>
+      <div class="slide slide2"><p>Special For Him & Her</p></div>
+      <div class="slide slide3"><p>New Trending Perfumes</p></div>
+    </div>
+
+    <div class="navigation-manual">
+      <label for="r1" class="manual-btn"></label>
+      <label for="r2" class="manual-btn"></label>
+      <label for="r3" class="manual-btn"></label>
+    </div> -->
+    </div>
+  </div>
+
+  <!-- ===== Trending Products ===== -->
+  <section id="trending">
+    <h2>Trending Products</h2>
+    <div class="trending">
+      <div class="card">
+        <img src="im1.jpeg" alt="Perfume 1">
+        <h3>Ocean Emily</h3>
+        <p>A refrshing fragrance inspired by the calmness of the ocean breeze</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="card">
+        <img src="im2.jpeg" alt="Perfume 2">
+        <h3>IMARA</h3>
+        <p> refreshing Long-lasting freshness with a touch of elegence</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="card">
+        <img src="im3.jpeg" alt="Perfume 3">
+        <h3>ALFEEM</h3>
+        <p>Perfect blend of floral and aquatic notes for everday wear</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </section>
+  <!-- TRENDING -->
+  <section class="ttrending" id="trending">
+    <h2 >Trending Products</h2>
+    <div class="tslider">
+      <div class="tslide"><img src="im10.jpeg" alt="Trending 1"><p>EMILY</p><p>$25</p>
+        <button class="tbtn-add-to-cart">Add to Cart</button></div>
+
+      <div class="tslide"><img src="im2.jpeg" alt="Trending 2"><p> SILVER WOOD</p><p>$20</p>
+        <button class="tbtn-add-to-cart">Add to Cart</button></div>
+
+      <div class="tslide"><img src="im3.jpeg" alt="Trending 3"><p>ALFEEM</p><p>$25</p>
+        <button class="tbtn-add-to-cart">Add to Cart</button></div>
+
+      <div class="tslide"><img src="im4.jpeg" alt="Trending 4"><p>NOIR</p><p>$25</p>
+        <button class="tbtn-add-to-cart">Add to Cart</button></div>
+
+      <div class="tslide"><img src="im5.jpeg" alt="Trending 4"><p>URBAN MAN</p><p>$25</p>
+        <button class="tbtn-add-to-cart">Add to Cart</button></div>
+
+      <div class="tslide"><img src="im6.jpeg" alt="Trending 4"><p>VISCONT</p><p>$25</p>
+        <button class="tbtn-add-to-cart">Add to Cart</button></div>
+
+      <div class="tslide"><img src="im8.jpeg" alt="Trending 4"><p>PALO</p><p>$25</p>
+        <button class="tbtn-add-to-cart">Add to Cart</button></div>
+
+      <div class="tslide"><img src="im9.jpeg" alt="Trending 4"><p>ROJA</p><p>$25</p>
+        <button class="tbtn-add-to-cart">Add to Cart</button></div>
+
+      <div class="tslide"><img src="im10.jpeg" alt="Trending 4"><p>EAU DE</p><p>$25</p>
+        <button class="tbtn-add-to-cart">Add to Cart</button></div>
+      
+        <div class="tslide"><img src="im13.jpeg" alt="Trending 4"><p>BLEU CHANEL</p><p>$25</p>
+        <button class="tbtn-add-to-cart">Add to Cart</button></div>
+      
+      <div class="tslide"><img src="im12.jpeg" alt="Trending 4"><p>COCO NOIR</p><p>$25</p>
+        <button class="tbtn-add-to-cart">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== For Him / For Her ===== -->
+  <section>
+    <h2>Special Collection</h2>
+    <div class="for-him-her">
+      <div class="promo">
+        <img src="im13.jpeg" alt="For Him">
+        <div>
+          <h3>For Him</h3>
+          <p>Strong & bold masculine fragrances.</p>
+        </div>
+      </div>
+      <div class="promo">
+        <img src="her5.jpeg" alt="For Her">
+        <div>
+          <h3>For Her</h3>
+          <p>Elegant floral & sweet perfumes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ===== Product Grid ===== -->
+  <section>
+    <h2>All Products</h2>
+    <div class="products">
+      <div class="card"><img src="im6.jpeg"><h3>VISCONT</h3><button>Add to Cart</button></div>
+      <div class="card"><img src="im7.jpeg"><h3>EX NIHALO</h3><button>Add to Cart</button></div>
+      <div class="card"><img src="her3.jpeg"><h3>SKINN RAW</h3><button>Add to Cart</button></div>
+      <div class="card"><img src="im15.jpeg"><h3>SKINN</h3><button>Add to Cart</button></div>
+      <div class="card"><img src="im9.jpeg"><h3>ROJA</h3><button>Add to Cart</button></div>
+      <div class="card"><img src="im10.jpeg"><h3>EAU DE</h3><button>Add to Cart</button></div>
+      <div class="card"><img src="im11rose.jpeg"><h3>COCO NOIR</h3><button>Add to Cart</button></div>
+      <div class="card"><img src="her1.jpeg"><h3>SKINN DUDE</h3><button>Add to Cart</button></div>
+      <div class="card"><img src="im13.jpeg"><h3>BLUE DE CHANEL</h3><button>Add to Cart</button></div>
+      <div class="card"><img src="zarawhiteimg.jpeg"><h3>ZARA SEOUL</h3><button>Add to Cart</button></div>
+      <div class="card"><img src="im1.jpeg"><h3>EMILY</h3><button>Add to Cart</button></div>
+      <div class="card"><img src="her2.jpeg"><h3>SKINN NOURA</h3><button>Add to Cart</button></div>
+      <div class="card"><img src="im14.jpeg"><h3>VERGE</h3><button>Add to Cart</button></div>
+      <div class="card"><img src="im8.jpeg"><h3>PALO</h3><button>Add to Cart</button></div>
+      <div class="card"><img src="im12.jpeg"><h3>COCO CHANEL</h3><button>Add to Cart</button></div>
+      
+      
+      
+    </div>
+  </section>
+
+ 
+
+
+  <!-- ===== About Us ===== -->
+  <section id="about">
+    <h2>About Us</h2>
+    <div class="about">
+      <img src="aboutusimg.jpeg" alt="Shop">
+      <div class="about-text">
+        <h3 style="font-size: xx-large; padding-left: 20px;">We Love Fragrances</h3>
+        <p style="padding-left: 20px;">PerfumeShop is dedicated to bringing you the finest fragrances at the best prices. Our mission is to make everyone feel confident with their signature scent.</p>
+        <br>
+        <p style="padding-left: 20px;"><b>Welcome to Perfume Shop , where every fragrance tells a story.We believe perfumes are more than just scents they are emotions, memories, and a part of your personality. Our collection is carefully chosen to bring you timeless classics as well as modern fragrances that suit every mood and occasion.At , our goal is simple to make luxury perfumes accessible and help you find the fragrance that feels truly yours. Whether you love refreshing florals, deep woody notes,our goal is simple to make luxury perfumes accessible and help you find the fragrance that feels truly yours. or bold oriental blends, we have something crafted just for you.Because a good perfume doesn’t just smell good it makes you unforgettable </b></p>
+        
+      </div>
+      
+      <!-- <form>
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Your Email">
+        <textarea placeholder="Message"></textarea>
+        <button>Submit</button>
+      </form> -->
+    </div>
+  </section>
+
+  <!-- ===== Contact Us ===== -->
+
+  <div class="contact-section">
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+      <p><strong>Address:</strong> Ajmer Rajasthan</p>
+      <p><strong>Email:</strong> perfume@gmail.com</p>
+      <p><strong>Phone:</strong> +91 98765 43210</p>
+    </div>
+    <form>
+      <div>
+        <label for="name">Your Name</label>
+        <input type="text" id="name" placeholder="Enter your name" required>
+      </div>
+      <div>
+        <label for="email">Your Email</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+      </div>
+      <div>
+        <label for="message">Your Message</label>
+        <textarea id="message" placeholder="Write your msg" required></textarea>
+      </div>
+      <div class="center">
+        <button type="submit">Send</button>
+      </div>
+    </form>
+  </div>
+  <!-- footer code -->
+  <footer id="contact">
+    <p>Contact us at: shop@perfumeshop.com | +91 9876543210</p>
+    <br>
+    <p>© 2025 PerfumeShop. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
